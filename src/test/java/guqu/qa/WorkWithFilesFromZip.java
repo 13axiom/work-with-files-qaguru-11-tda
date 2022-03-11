@@ -18,12 +18,13 @@ public class WorkWithFilesFromZip {
     @Test
     void parseFilesInZipTest() throws Exception {
         try
-          (InputStream is = classLoader.getResourceAsStream("../files/work-with-files-qaguru-11-tda-zip-pdf-csv-xlsx.zip");
+          (InputStream is = classLoader.getResourceAsStream("files/work-with-files-qaguru-11-tda-zip-pdf-csv-xlsx.zip");
                 ZipFile zp = new ZipFile(is)) {
             Enumeration<? extends ZipEntry> entry = zp.entries();
             while (entry.hasMoreElements()) {
                 ZipEntry ze = entry.nextElement();
                 System.out.println("Entry: "+ze.getName());
+
             }
         }
     }
