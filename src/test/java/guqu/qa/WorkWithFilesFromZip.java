@@ -15,7 +15,7 @@ public class WorkWithFilesFromZip {
 
     ClassLoader classLoader = getClass().getClassLoader();
 
-    @Test
+    /*@Test
     void parseFilesInZipTest() throws Exception {
         try
           (InputStream is = classLoader.getResourceAsStream("files/work-with-files-qaguru-11-tda-zip-pdf-csv-xlsx.zip");
@@ -27,5 +27,7 @@ public class WorkWithFilesFromZip {
 
             }
         }
-    }
+    }*/
+
+
 }
