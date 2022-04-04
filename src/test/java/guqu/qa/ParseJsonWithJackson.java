@@ -22,17 +22,15 @@ public class ParseJsonWithJackson {
         assertThat(json.quiz.maths.q2.answer).isEqualTo("4");
         assertThat(json.quiz.sport.q1.options).contains("New York Bulls");
 
-        }
+    }
 
     @Test
     void jsonCommonTestByJackson2() throws IOException {
         ObjectMapper om = new ObjectMapper();
         try (InputStream is = classLoader.getResourceAsStream("files/questions.json")) {
-           // QuestionsFormat json = om.readValue(is, QuestionsFormat.class);
-            // assertThat(json.quiz.maths.q2.answer).isEqualTo("4");
-            // assertThat(json.quiz.sport.q1.options).contains("New York Bulls");
-            JsonObject json = om.readValue(is,JsonObject.class);
-           // assertThat(json.get("quiz").getAsJsonObject().get("maths").getAsJsonObject().get("q1").getAsJsonObject().get("answer").getAsString()).isEqualTo("12");
+            QuestionsFormat json = om.readValue(is, QuestionsFormat.class);
+            assertThat(json.quiz.maths.q2.answer).isEqualTo("4");
+            assertThat(json.quiz.sport.q1.options).contains("New York Bulls");
 
         }
 
