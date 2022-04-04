@@ -1,9 +1,12 @@
 package guqu.qa;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
@@ -28,6 +31,26 @@ public class WorkWithFilesFromZip {
             }
         }
     }*/
+    @Test
+    void jsonCommonTest() throws Exception {
+        Gson gson = new Gson();
+        try (InputStream is = classLoader.getResourceAsStream("files/simple.json")) {
+            String json = new String(is.readAllBytes(), StandardCharsets.UTF_8);
+            JsonObject jsonObject = gson.fromJson(json, JsonObject.class);
+            assertThat(jsonObject.get("name").getAsString()).isEqualTo("Dmitrii");
+            assertThat(jsonObject.get("address").getAsJsonObject().get("street").getAsString()).isEqualTo("Mira");
+        }
+    }
 
+    @Test
+    void jsonTypeTest() throws Exception {
+        Gson gson = new Gson();
+        try (InputStream is = classLoader.getResourceAsStream("files/simple.json")) {
+            String json = new String(is.readAllBytes(), StandardCharsets.UTF_8);
+            Teacher jsonObject = gson.fromJson(json, Teacher.class);
+            assertThat(jsonObject.name).isEqualTo("Dmitrii");
+            assertThat(jsonObject.address.street).isEqualTo("Mira");
+        }
+    }
 
 }
